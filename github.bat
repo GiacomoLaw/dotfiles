@@ -1,3 +1,6 @@
+:: move from user space to github folder
+
+@echo off
 cd..
 cd..
 cd users

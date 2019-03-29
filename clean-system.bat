@@ -1,3 +1,5 @@
+:: clean temp system files
+
 @echo off
 setlocal
 call :Clear_Folder %SystemRoot%\TEMP
@@ -7,7 +9,7 @@ popd
 endlocal
 goto :EOF
 
-:Clear_Folder
+:: Clear_Folder
 pushd "%~1"
 for /d %%i in (*) do rd /s /q "%%i"
 del /f /q *
