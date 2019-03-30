@@ -29,11 +29,13 @@ function prompt
 { 
     if ($isAdmin) 
     {
-        "[" + (Get-Location) + "] # " 
+        "[" + (Get-Location) + "] # "
     }
     else 
     {
-        "[" + (Get-Location) + "] $ "
+        $promptString = "[" + (Get-Location) + "] $ "
+        Write-Host $promptString -NoNewline -ForegroundColor Blue
+        return " "
     }
 }
 
