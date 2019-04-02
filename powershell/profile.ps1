@@ -1,6 +1,7 @@
+# prevent accidental system breaking changes
 Set-PSDebug -Strict
 
-# get rid of annoying bell
+# get rid of annoying bell on backspace
 Set-PSReadlineOption -BellStyle None
 
 # set home drive directory
@@ -29,7 +30,9 @@ function prompt
 { 
     if ($isAdmin) 
     {
-        "[" + (Get-Location) + "] # "
+        $promptString = "[" + (Get-Location) + "] # "
+        Write-Host $promptString -NoNewline -ForegroundColor Blue
+        return " "
     }
     else 
     {
@@ -39,6 +42,7 @@ function prompt
     }
 }
 
+# add 'admin' to top of window if in admin shell
 $Host.UI.RawUI.WindowTitle = "PowerShell {0}" -f $PSVersionTable.PSVersion.ToString()
 if ($isAdmin)
 {
@@ -70,7 +74,7 @@ function github { cd "C:\Users\giaco\Documents\Github" }
 Remove-Variable identity
 Remove-Variable principal
 
-# welcome text
+# welcome text at top of shell
 Write-Host "Welcome to" (Invoke-Expression hostname) -ForegroundColor Green
 Write-Host "You are logged in as" (Invoke-Expression whoami)
 Write-Color "Today: ", (Get-Date) -Color White, yellow
