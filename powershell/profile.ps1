@@ -1,6 +1,9 @@
 # prevent accidental system breaking changes
 Set-PSDebug -Strict
 
+# better autocomplete
+Set-PSReadlineKeyHandler -Key Tab -Function Complete
+
 # get rid of annoying bell on backspace
 Set-PSReadlineOption -BellStyle None
 
@@ -75,8 +78,6 @@ Remove-Variable identity
 Remove-Variable principal
 
 # welcome text at top of shell
-Write-Host "Welcome to" (Invoke-Expression hostname) -ForegroundColor Green
-Write-Host "You are logged in as" (Invoke-Expression whoami)
 Write-Color "Today: ", (Get-Date) -Color White, yellow
 New-Alias Time Get-Date -Force
 Write-Host "PowerShell"($PSVersionTable.PSVersion.Major)"`n"
